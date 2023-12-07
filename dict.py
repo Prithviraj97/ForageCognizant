@@ -20,5 +20,5 @@ my_menu = {
 
 # Iterate the elements of the menu
 for dish, values in my_menu.items():
-  # Print whether the dish must be served cold or hot
+  # Print whether the dish must be served cold or hot. .title() method will make the key which is dish start with capital letter.
   print(f"{dish.title()} is best served {values['best_served']}.")
