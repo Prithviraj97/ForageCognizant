@@ -22,7 +22,7 @@ import sys
 #                     print("\nKeywords found in the document are : ", findKeywords(text))
 
 def main():
-    keywords = {"and", "..."}
+    keywords = {"and", "..."} #add more keywords here.
     filename = input("Enter the file name or directory: ").strip()
 
     if not os.path.isFile(filename):
