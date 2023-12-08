@@ -184,3 +184,134 @@ class LoggedDF(pd.DataFrame):
     
     # Call pd.DataFrame.to_csv on temp, passing in *args and **kwargs
     pd.DataFrame.to_csv(temp, *args, **kwargs)
+
+class BankAccount:
+   # MODIFY to initialize a number attribute
+    def __init__(self, number,balance=0):
+        self.balance = balance
+        self.number = number
+      
+    def withdraw(self, amount):
+        self.balance -= amount 
+    
+    # Define __eq__ that returns True if the number attributes are equal 
+    def __eq__(self, other):
+        return self.number == other.number   
+
+# Create accounts and compare them       
+acct1 = BankAccount(123, 1000)
+acct2 = BankAccount(123, 1000)
+acct3 = BankAccount(456, 1000)
+print(acct1 == acct2)
+print(acct1 == acct3)
+    
+'''Modify the definition of BankAccount to only return True if the number attribute is the same 
+   and the type() of both objects passed to it is the same.'''
+class BankAccount:
+    def __init__(self, number, balance=0):
+        self.number, self.balance = number, balance
+      
+    def withdraw(self, amount):
+        self.balance -= amount 
+
+    # MODIFY to add a check for the type()
+    def __eq__(self, other):
+        # return (self.number == other.number)
+        return (type(self)== type(other))
+
+acct = BankAccount(873555333)
+pn = Phone(873555333)
+print(acct == pn)
+
+class Employee:
+    def __init__(self, name, salary=30000):
+        self.name, self.salary = name, salary
+            
+    # Add the __str__() method
+    def __str__(self):
+        cust_str = """
+        Employee name: {name}
+        Employee Salary: {salary}
+        """.format(name=self.name, \
+        salary = self.salary)
+        return cust_str
+
+emp1 = Employee("Amar Howard", 30000)
+print(emp1)
+emp2 = Employee("Carolyn Ramirez", 35000)
+print(emp2)
+
+class Employee:
+    def __init__(self, name, salary=30000):
+        self.name, self.salary = name, salary
+      
+
+    def __str__(self):
+        s = "Employee name: {name}\nEmployee salary: {salary}".format(name=self.name, salary=self.salary)      
+        return s
+      
+    # Add the __repr__method  
+    def __repr__(self):
+       return "Employee('{name}', {salary})".format(name=self.name, salary=self.salary) 
+
+emp1 = Employee("Amar Howard", 30000)
+print(repr(emp1))
+emp2 = Employee("Carolyn Ramirez", 35000)
+print(repr(emp2))
+
+# MODIFY the function to catch exceptions
+def invert_at_index(x, ind):
+    """
+    The function `invert_at_index` takes a list `x` and an index `ind`, and returns the inverse of the
+    element at that index in the list.
+    @param x - The parameter `x` is a list of numbers. In this case, it is `[5, 6, 0, 7]`.
+    @param ind - The `ind` parameter is the index of the element in the list `x` that you want to
+    invert.
+    @returns The function `invert_at_index` returns the inverted value of the element at the given index
+    `ind` in the list `x`. If the element is 0, it raises a `ZeroDivisionError` and prints "Cannot
+    divide by zero!". If the index is out of range, it raises an `IndexError` and prints "Index out of
+    range".
+    """
+    try:
+        return 1/x[ind]
+    except ZeroDivisionError:
+        print("Cannot divide by zero!")
+    except IndexError:
+        print("Index out of range")
+ 
+a = [5,6,0,7]
+
+# Works okay
+print(invert_at_index(a, 1))
+
+# Potential ZeroDivisionError
+print(invert_at_index(a, 2))
+
+# Potential IndexError
+print(invert_at_index(a, 5))
+
+#creating custom error message.
+class SalaryError(ValueError): pass
+class BonusError(SalaryError): pass
+
+class Employee:
+  MIN_SALARY = 30000
+  MAX_BONUS = 5000
+
+  def __init__(self, name, salary = 30000):
+    self.name = name    
+    if salary < Employee.MIN_SALARY:
+      raise SalaryError("Salary is too low!")      
+    self.salary = salary
+    
+  # Rewrite using exceptions  
+  def give_bonus(self, amount):
+    if amount > Employee.MAX_BONUS:
+
+      raise BonusError("The bonus amount is too high!")  
+        
+    elif self.salary + amount <  Employee.MIN_SALARY:
+      raise SalaryError("The salary after bonus is too low!")
+      
+    else:  
+      self.salary += amount
