@@ -1,3 +1,4 @@
+import pandas as pd
 class Employee:
     def set_name(self, new_name):
         self.name = new_name
@@ -164,9 +165,6 @@ print(mng.name)
 # Call mng.display()
 mng.display()
 
-
-# Import pandas as pd
-import pandas as pd
 
 # Define LoggedDF inherited from pd.DataFrame and add the constructor
 class LoggedDF(pd.DataFrame):
