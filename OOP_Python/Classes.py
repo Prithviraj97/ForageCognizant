@@ -315,3 +315,105 @@ class Employee:
       
     else:  
       self.salary += amount
+
+
+# Add class attributes for max number of days and months
+class BetterDate:
+    _MAX_DAYS = 31
+    __MAX_MONTHS = 12
+    def __init__(self, year, month, day):
+        self.year, self.month, self.day = year, month, day
+        
+    @classmethod
+    def from_str(cls, datestr):
+        year, month, day = map(int, datestr.split("-"))
+        return cls(year, month, day)
+    
+    # Add _is_valid() checking day and month values
+    def _is_valid(self):
+        if self.day<=BetterDate._MAX_DAYS and self.month<=BetterDate.__MAX_MONTHS:
+            return True
+        else:
+            return False
+    
+bd1 = BetterDate(2020, 4, 30)
+print(bd1._is_valid())
+
+bd2 = BetterDate(2020, 6, 45)
+print(bd2._is_valid())
+
+#####################################################################################
+class Customer:
+    def __init__(self, name, new_bal):
+        self.name = name
+        if new_bal < 0:
+           raise ValueError("Invalid balance!")
+        self._balance = new_bal  
+
+    # Add a decorated balance() method returning _balance        
+    @property
+    def balance(self):
+        return self._balance
+
+    # Add a setter balance() method
+    @balance.setter
+    def balance(self, new_bal):
+        # Validate the parameter value
+        if new_bal < 0:
+           raise ValueError("Invalid balance!")
+        self._balance = new_bal
+        print("Setter method called")
+
+# Create a Customer        
+cust = Customer("Belinda Lutz", 2000)
+
+# Assign 3000 to the balance property
+cust.balance = 3000
+
+# Print the balance property
+print(cust.balance)
+
+###############################################################################################
+import pandas as pd
+from datetime import datetime
+
+# LoggedDF class definition from Chapter 2
+class LoggedDF(pd.DataFrame):
+    def __init__(self, *args, **kwargs):
+        pd.DataFrame.__init__(self, *args, **kwargs)
+        self.created_at = datetime.today()
+
+    def to_csv(self, *args, **kwargs):
+        temp = self.copy()
+        temp["created_at"] = self.created_at
+        pd.DataFrame.to_csv(temp, *args, **kwargs)   
+
+# Instantiate a LoggedDF called ldf
+ldf = LoggedDF({"col1": [1,2], "col2":[3,4]}) 
+
+# Assign a new value to ldf's created_at attribute and print
+ldf.created_at = "2035-07-13"
+print(ldf.created_at)
+
+##################################################################################################
+import pandas as pd
+from datetime import datetime
+
+# MODIFY the class to use _created_at instead of created_at
+class LoggedDF(pd.DataFrame):
+    def __init__(self, *args, **kwargs):
+        pd.DataFrame.__init__(self, *args, **kwargs)
+        self._created_at = datetime.today()
+    
+    def to_csv(self, *args, **kwargs):
+        temp = self.copy()
+        temp["created_at"] = self._created_at
+        pd.DataFrame.to_csv(temp, *args, **kwargs)   
+    
+    # Add a read-only property: _created_at
+    @property
+    def created_at(self):
+        return self._created_at
+
+# Instantiate a LoggedDF called ldf
+ldf = LoggedDF({"col1": [1,2], "col2":[3,4]}) 
