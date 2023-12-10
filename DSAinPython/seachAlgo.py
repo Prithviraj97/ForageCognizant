@@ -4,6 +4,7 @@ def binary_search(ordered_list, search_value):
   
   while first <= last:
     middle = (first + last)//2
+    print(middle)
     # Check whether the search value equals the value in the middle
     if search_value == ordered_list[middle]:
       return True
