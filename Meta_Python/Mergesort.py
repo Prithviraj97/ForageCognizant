@@ -17,6 +17,15 @@ def merge_sort(my_list):
                 my_list[k] = right_half[j]
                 j += 1
             k +=1
+        while i < len(left_half):
+            my_list[k] = left_half[i]
+            i += 1
+            k += 1
+
+        while j < len(right_half):
+            my_list[k] = right_half[j]
+            j +=1
+            k +=1
     return my_list
 
 num_list = [35,22,90,4,50,20,30,40,1]
