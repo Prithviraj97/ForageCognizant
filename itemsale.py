@@ -37,7 +37,7 @@ class Clothing(Item):
         self.brand = brand
         self.size = size
 
-    def get_brand(self):
+    def get_brand(self): 
         return self.brand
 
     def set_brand(self, brand):

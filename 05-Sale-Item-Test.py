@@ -21,7 +21,7 @@ print(i3)
 print("-" * 50)
 
 # Create Clothing and Food items and print them
-c1 = Clothing("jeans", "Levis", 30, 44.99, 32)
+c1 = Clothing(name="jeans", brand="Levis", cost=30, price=44.99, size=32)
 c2 = Clothing("shirt", "Macy's", 20, 29.99, 16)
 f1 = Food("bananas", 2, 4.59)
 f2 = Food("Avocado", 1.50, 5.50)
