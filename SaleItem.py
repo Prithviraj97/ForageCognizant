@@ -30,7 +30,7 @@ class Item:
     @cost.setter
     def cost(self,costs):
         if costs >= 0:
-             self._cost=costs
+             self._cost=costs 
         else:
             self._cost = 0
     
