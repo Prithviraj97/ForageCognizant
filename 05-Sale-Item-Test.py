@@ -5,7 +5,8 @@
 #####################################################################
 
 # Import all the classes from the file named SaleItem.py
-from SaleItem import * 
+# from SaleItem import * 
+from itemsale import *
 
 # Create 3 basic items and print them
 i1 = Item("bananas", 2, 4.59)
