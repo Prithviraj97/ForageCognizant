@@ -126,7 +126,7 @@ class Food(Item):
         #     self._shelfLife = 7
 
         def __str__(self):
-            return "{:<15}Expires in {:>15} days".format(__str__(), self._shelfLife)
+            f"{self.name} (shelf life: {self.shelfLife} days, cost: ${self.cost}, price: ${self.price})"
             
 
 
