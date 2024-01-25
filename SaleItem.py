@@ -111,18 +111,19 @@ class Clothing(Item):
 class Food(Item):
     def __init__(self,name,cost,price,shelfLife=7):
         super().__init__(name, cost, price)
-        self._shelfLife =7
+        self._shelfLife = shelfLife
 
     @property
-    def shelfLife(shelf):
-        return shelfLife
+    def shelfLife(self):
+        return self._shelfLife
 
     @shelfLife.setter
-    def shelfLife(self,value):
-        if value >= 0:
-            self._shelfLife = value
-        else:
-            self._shelfLife = 7
+    def shelfLife(self,shelfLife):
+        self._shelfLife = shelfLife
+        # if value >= 0:
+        #     self._shelfLife = value
+        # else:
+        #     self._shelfLife = 7
 
         def __str__(self):
             return "{:<15}Expires in {:>15} days".format(__str__(), self._shelfLife)
