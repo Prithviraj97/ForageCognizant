@@ -1,6 +1,6 @@
 #####################################################################
-# author:       
-# date:         
+# author:   Satyendra Raj Singh    
+# date:   01/24/2024      
 # description: 
 #####################################################################
 
@@ -57,11 +57,6 @@ class Item:
     def __str__(self):
         return "{:<10} {:<10.2f} {:<10.2f}".format(self._name,self._cost, self._price)
 
-    
-
-        
-
-    
 
 #####################################################################
 # A Clothing is an Item. In addition to name, cost and price, it also
@@ -94,7 +89,7 @@ class Clothing(Item):
             self._size = None
     
     def __str__(self):
-        return "{}|{} size:{}".format(super().__str__(), self._brand, self._size)
+        return "{}|{:<5}  size:{}".format(super().__str__(), self._brand, self._size)
         
 
 #####################################################################
@@ -119,16 +114,9 @@ class Food(Item):
         else:
             self._shelf_Life = None
 
-    # def __str__(self):
-    #     f"{self.name} (shelf life: {self.shelf_Life} days, cost: ${self._cost}, price: ${self._price})"
-    # def __str__(self):
-    #     return "{} (shelf life: {} days, cost: ${}, price: ${})".format(
-    #         self._name, self.shelf_Life, self._cost, self._price
-    #     )
     def __str__(self):
             return "{}|expires in {} days".format(super().__str__(), self._shelf_Life)
             
-
 
 #####################################################################
 # A Shoe is a Clothing. It only receives cost, price and size as
@@ -146,7 +134,6 @@ class Shoe(Clothing):
 class Chips(Food):
     def __init__(self):
         super().__init__("Lays", 2.00, 3.50, 21)
-
 
 
 #####################################################################
