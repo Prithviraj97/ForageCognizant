@@ -55,7 +55,7 @@ class Item:
 
 
     def __str__(self):
-        return "{:<15} {:>15} {:>15}".format(self._name,self._cost, self._price)
+        return "{:<5} {:>5} {:>5}".format(self._name,self._cost, self._price)
 
     
 
@@ -111,22 +111,22 @@ class Clothing(Item):
 class Food(Item):
     def __init__(self,name,cost,price,shelfLife=7):
         super().__init__(name, cost, price)
-        self._shelfLife = shelfLife
+        self.shelfLife = shelfLife
 
     @property
-    def shelfLife(self):
-        return self._shelfLife
+    def get_shelfLife(self):
+        return self.shelfLife
 
-    @shelfLife.setter
-    def shelfLife(self,shelfLife):
-        self._shelfLife = shelfLife
+    @get_shelfLife.setter
+    def set_shelfLife(self,shelfLife):
+        self.shelfLife = shelfLife
         # if value >= 0:
         #     self._shelfLife = value
         # else:
         #     self._shelfLife = 7
 
-        def __str__(self):
-            f"{self.name} (shelf life: {self.shelfLife} days, cost: ${self.cost}, price: ${self.price})"
+    def __str__(self):
+        f"{self.name} (shelf life: {self.shelfLife} days, cost: ${self.cost}, price: ${self.price})"
             
 
 
@@ -138,15 +138,15 @@ class Shoe(Clothing):
     def __init__(self, cost, price, size):
         super().__init__("Crocs", "Nike", cost, price, size)
 
-class Chips(Food):
-    def __init__(self):
-        super().__init__("Lays", 2, 3.50, 21)
-
 
 #####################################################################
 # A Chips is a Food. It does not receive any arguments for its
 # constructor. It sets the name, cost, price and shelfLife to be "Lays",
 # 2, 3.50 and 21 respectively.
+class Chips(Food):
+    def __init__(self):
+        super().__init__("Lays", 2, 3.50, 21)
+
 
 
 #####################################################################

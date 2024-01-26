@@ -5,15 +5,15 @@
 #####################################################################
 
 # Import all the classes from the file named SaleItem.py
-# from SaleItem import * 
-from itemsale import *
+from SaleItem import * 
+# from itemsale import *
 
 # Create 3 basic items and print them
 i1 = Item("bananas", 2, 4.59)
 i2 = Item("jeans", 30, 44.99)
 i3 = Item("shirt", 20, 29.99)
 
-print("Item\tCost\tPrice\tExtra Info")
+print("{:<10} {:<10} {:<10} {:<10}".format("Item", "Cost", "Price", "Extra Info"))
 print("-" * 50)
 print(i1)
 print(i2)
@@ -22,7 +22,7 @@ print("-" * 50)
 
 # Create Clothing and Food items and print them
 c1 = Clothing(name="jeans", brand="Levis", cost=30, price=44.99, size=32)
-c2 = Clothing("shirt", "Macy's", 20, 29.99, 16)
+c2 = Clothing(name="shirt", brand="Macy's", cost=20, price=29.99, size=16)
 f1 = Food("bananas", 2, 4.59)
 f2 = Food("Avocado", 1.50, 5.50)
 f2.shelfLife = 2
