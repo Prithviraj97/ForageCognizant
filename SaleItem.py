@@ -55,8 +55,8 @@ class Item:
 
 
     def __str__(self):
-        return "{:<10} {:<10.2f} {:<10.2f}".format(self._name,self._cost, self._price)
-        # return f"{self.name}\t {self.cost:.2f}\t{self.price:.2f}"
+        # return "{:<10} {:<10.2f} {:<10.2f}".format(self._name,self._cost, self._price)
+        return f"{self.name}\t {self.cost:.2f}\t{self.price:.2f}"
 
 
 
@@ -91,7 +91,7 @@ class Clothing(Item):
             self._size = None
     
     def __str__(self):
-        return "{}|{:<5}  size:{}".format(super().__str__(), self._brand, self._size)
+        return "{}\t|{:<5}  size:{}".format(super().__str__(), self._brand, self._size)
         
 
 #####################################################################
@@ -117,7 +117,7 @@ class Food(Item):
             self._shelf_Life = None
 
     def __str__(self):
-            return "{}|expires in {} days".format(super().__str__(), self._shelf_Life)
+            return "{}\t|expires in {} days".format(super().__str__(), self._shelf_Life)
             
 
 #####################################################################
