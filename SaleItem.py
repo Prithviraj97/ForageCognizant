@@ -79,29 +79,23 @@ class Clothing(Item):
         return self._brand
 
     @brand.setter
-    def brand(self,brands):
-        self._brand = brands
+    def brand(self,brand):
+        self._brand = brand
 
     @property
     def size(self):
         return self._size
 
     @size.setter
-    def size(self,sizes):
-        if sizes >= 0:
-            self._size = sizes
+    def size(self,size):
+        if size >= 0:
+            self._size = size
         else:
-            sizes = 0
+            self._size = 0
     
     def __str__(self):
         return "{} {} {}".format(super().__str__(), self._brand, self._size)
         
-
-
-
-
-
-    
 
 #####################################################################
 # A Food is an Item. In addition to name, cost and price, it also has a
@@ -109,24 +103,28 @@ class Clothing(Item):
 # constructor. It sets all objects created to have a shelfLife of 7 by
 # default. It also overloads the __str__ function.
 class Food(Item):
-    def __init__(self,name,cost,price,shelfLife=7):
+    def __init__(self,name,cost,price,shelf_Life=7):
         super().__init__(name, cost, price)
-        self.shelfLife = shelfLife
+        self.shelf_Life = shelf_Life
 
     @property
-    def get_shelfLife(self):
-        return self.shelfLife
+    def shelf_Life(self):
+        return self._shelf_Life
 
-    @get_shelfLife.setter
-    def set_shelfLife(self,shelfLife):
-        self.shelfLife = shelfLife
-        # if value >= 0:
-        #     self._shelfLife = value
-        # else:
-        #     self._shelfLife = 7
+    @shelf_Life.setter
+    def shelf_Life(self,value):
+        # self.shelfLife = shelfLife
+        if value >= 0:
+            self._shelf_Life = value
+        else:
+            self._shelf_Life = 7
 
+    # def __str__(self):
+    #     f"{self.name} (shelf life: {self.shelf_Life} days, cost: ${self._cost}, price: ${self._price})"
     def __str__(self):
-        f"{self.name} (shelf life: {self.shelfLife} days, cost: ${self.cost}, price: ${self.price})"
+        return "{} (shelf life: {} days, cost: ${}, price: ${})".format(
+            self._name, self.shelf_Life, self._cost, self._price
+        )
             
 
 
