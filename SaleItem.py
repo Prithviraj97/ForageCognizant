@@ -56,6 +56,8 @@ class Item:
 
     def __str__(self):
         return "{:<10} {:<10.2f} {:<10.2f}".format(self._name,self._cost, self._price)
+        # return f"{self.name}\t {self.cost:.2f}\t{self.price:.2f}"
+
 
 
 #####################################################################
