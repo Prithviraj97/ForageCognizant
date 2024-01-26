@@ -55,7 +55,7 @@ class Item:
 
 
     def __str__(self):
-        return "{:<5} {:>5} {:>5}".format(self._name,self._cost, self._price)
+        return "{:<10} {:<10.2f} {:<10.2f}".format(self._name,self._cost, self._price)
 
     
 
@@ -91,10 +91,10 @@ class Clothing(Item):
         if size >= 0:
             self._size = size
         else:
-            self._size = 0
+            self._size = None
     
     def __str__(self):
-        return "{} {} {}".format(super().__str__(), self._brand, self._size)
+        return "{}|{} size:{}".format(super().__str__(), self._brand, self._size)
         
 
 #####################################################################
@@ -117,14 +117,16 @@ class Food(Item):
         if value >= 0:
             self._shelf_Life = value
         else:
-            self._shelf_Life = 7
+            self._shelf_Life = None
 
     # def __str__(self):
     #     f"{self.name} (shelf life: {self.shelf_Life} days, cost: ${self._cost}, price: ${self._price})"
+    # def __str__(self):
+    #     return "{} (shelf life: {} days, cost: ${}, price: ${})".format(
+    #         self._name, self.shelf_Life, self._cost, self._price
+    #     )
     def __str__(self):
-        return "{} (shelf life: {} days, cost: ${}, price: ${})".format(
-            self._name, self.shelf_Life, self._cost, self._price
-        )
+            return "{}|expires in {} days".format(super().__str__(), self._shelf_Life)
             
 
 
@@ -133,8 +135,8 @@ class Food(Item):
 # arguments to its constructor. It sets all Shoe objects to have a name
 # of "Sneakers" and brand of "Nike" by default.
 class Shoe(Clothing):
-    def __init__(self, cost, price, size):
-        super().__init__("Crocs", "Nike", cost, price, size)
+    def __init__(self, cost, price, size, brand="Nike"):
+        super().__init__("Crocs",cost, price, brand, size)
 
 
 #####################################################################
@@ -143,7 +145,7 @@ class Shoe(Clothing):
 # 2, 3.50 and 21 respectively.
 class Chips(Food):
     def __init__(self):
-        super().__init__("Lays", 2, 3.50, 21)
+        super().__init__("Lays", 2.00, 3.50, 21)
 
 
 
