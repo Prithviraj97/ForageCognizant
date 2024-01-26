@@ -1,7 +1,7 @@
 #####################################################################
 # author:   Satyendra Raj Singh    
 # date:   01/24/2024      
-# description: 
+# description: The above below defines several classes including Item, Clothing, Food, Shoe, and Chips, each with their own properties and methods.
 #####################################################################
 
 # An Item has a name, cost and price, all of which are passed in as
