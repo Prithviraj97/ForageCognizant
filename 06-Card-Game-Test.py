@@ -52,7 +52,6 @@ if TESTING:
     d1.shuffle()
     d1.shuffle()
     print(d1)
-    print("-" * 40)
 
     c6 = d1.draw()
     c7 = d1.draw()

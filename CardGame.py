@@ -107,37 +107,46 @@ class Game:
         print(f"You and this program will take turns picking cards.")
         print(f"The one with highest value card wins")
         print(f"-------------------------------------------------------------")
-        self.play()
+        ready = input("Are you ready to start the Card Game? (yes/no): ")
+        if ready.lower() == 'yes':
+            self.play()
+        else:
+            self.end()
 
     def end(self):
         print("Game over", self._deck)
 
     def play(self):
-        while self._deck.size() >=  0:
+        
+        while self._deck.size() >=  2:
             playercard = self._deck.draw()
             computercard = self._deck.draw()
 
-            print(f"Player's card: {playercard}")
-            print(f"Computer's card: {computercard}")
+            # print(f"Player's card: {playercard}")
+            # print(f"Computer's card: {computercard}")
+            print(f"You picked {playercard}, and I picked {computercard}")
 
             if playercard > computercard:
-                print("I wins this round!")
+                print("I WIN")
             elif playercard < computercard:
-                print("You wins this round!")
+                print("YOU WIN")
             else:
                 print("It's a tie")
 
             # self._deck.shuffle()
-
+            print("Deck size after rounds:", self.deck.size())
+            if self._deck.size() < 2:
+                print("Not enough cards to play. Sorry to See you go.")
+                print("--------------Remaining Cards--------------")
+                print(self._deck)
+                self.end()
             playagain = input("Do you want to play another round? (yes/no): ").lower()
             if playagain != "yes":
                 self.end()
                 break
-
-        # if self._deck.size() == 1:
-        #     print("Not enough cards to play. Sorry to See you go.")
-        #     self.end()
-
+        # print("Deck size after rounds:", self.deck.size())
+            
+        
 
 
         
