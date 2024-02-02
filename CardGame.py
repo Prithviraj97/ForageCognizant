@@ -143,7 +143,7 @@ class Game:
         if self._deck.size() < 2:
                 print("Not enough cards to play.")
                 print("Sorry to see you go.")
-                print("-------------------Remaining Cards-------------------")
+                print("------------Remaining Cards--------------")
                 self.end()   
          
             
