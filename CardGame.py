@@ -14,6 +14,8 @@ random.seed(9876543210)
 POSSIBLESUITS = ["clubs", "diamonds", "hearts", "spades"]
 
 class Card:
+    # POSSIBLESUITS = ["clubs", "diamonds", "hearts", "spades"]
+
     def __init__(self,number=2,suit='clubs'):
         self._number = number
         self._suit = suit
@@ -35,7 +37,7 @@ class Card:
 
     @suit.setter
     def suit(self,value):
-        if value in POSSIBLESUITS:
+        if value in self.POSSIBLESUITS:
             self._suit = value
         else:
             self._suit = "clubs"
@@ -111,7 +113,7 @@ class Game:
         print("Game over", self._deck)
 
     def play(self):
-        while self._deck.size() >=  2:
+        while self._deck.size() >=  0:
             playercard = self._deck.draw()
             computercard = self._deck.draw()
 
@@ -125,18 +127,16 @@ class Game:
             else:
                 print("It's a tie")
 
-            self._deck.shuffle()
+            # self._deck.shuffle()
 
             playagain = input("Do you want to play another round? (yes/no): ").lower()
             if playagain != "yes":
                 self.end()
-            else:
-                self.play()
                 break
 
-        if self._deck.size() == 1:
-            print("Not enough cards to play. Sorry to See you go.")
-            self.end()
+        # if self._deck.size() == 1:
+        #     print("Not enough cards to play. Sorry to See you go.")
+        #     self.end()
 
 
 

@@ -5,7 +5,7 @@
 # program.
 #####################################################################
 
-TESTING = True    # Change this to False if you want to proceed to the
+TESTING = False    # Change this to False if you want to proceed to the
                     # game itself. Leave it as True if you want to test
                     # the Card and Deck classes.
 
@@ -16,8 +16,7 @@ from CardGame import *
 import random
 
 
-if (TESTING):
-
+if TESTING:
     # Testing: the CARD class
     c1 = Card(2, "hearts")
     c2 = Card(4, "diamonds")
