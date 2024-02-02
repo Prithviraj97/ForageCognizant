@@ -107,8 +107,8 @@ class Game:
         print(f"You and this program will take turns picking cards.")
         print(f"The one with highest value card wins")
         print(f"-------------------------------------------------------------")
-        ready = input("Are you ready to start the Card Game? (yes/no): ")
-        if ready.lower() == 'yes':
+        ready = input("Are you ready to start the Card Game? (y/n): ")
+        if ready.lower() == 'y':
             self.play()
         else:
             self.end()
@@ -134,16 +134,19 @@ class Game:
                 print("It's a tie")
 
             # self._deck.shuffle()
-            print("Deck size after rounds:", self.deck.size())
-            if self._deck.size() < 2:
-                print("Not enough cards to play. Sorry to See you go.")
-                print("--------------Remaining Cards--------------")
-                print(self._deck)
-                self.end()
-            playagain = input("Do you want to play another round? (yes/no): ").lower()
-            if playagain != "yes":
+            # print("Deck size after rounds:", self.deck.size()
+            playagain = input("Would you like to play again? (y/n): ").lower()
+            if playagain != "y":
                 self.end()
                 break
+        if self._deck.size() < 2:
+                print("Not enough cards to play.")
+                print("Sorry to see you go.")
+                print("--------------Remaining Cards--------------")
+                self.end()   
+         
+            
+        
         # print("Deck size after rounds:", self.deck.size())
             
         
