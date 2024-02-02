@@ -5,7 +5,7 @@
 # program.
 #####################################################################
 
-TESTING = False    # Change this to False if you want to proceed to the
+TESTING = True   # Change this to False if you want to proceed to the
                     # game itself. Leave it as True if you want to test
                     # the Card and Deck classes.
 

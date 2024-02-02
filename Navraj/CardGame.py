@@ -1,8 +1,7 @@
 #####################################################################
 # author:      
 # date:       
-# description: The code defines classes for a Card, Deck, and Game, allowing users to play a basic card game
-# against the computer.
+# description: 
 #####################################################################
 
 # import the shuffle and seed functions from the random library.
@@ -84,7 +83,7 @@ class Deck:
         if self.size() ==  0:
             return "[--empty--]"
         else:
-            return "["+", ".join([str(card) for card in self._cards]) + "]"
+            return "["+", ".join([str(card) for card in self._cards]) + ", " + "]"
 
 
 class Game:
@@ -124,8 +123,6 @@ class Game:
             playercard = self._deck.draw()
             computercard = self._deck.draw()
 
-            # print(f"Player's card: {playercard}")
-            # print(f"Computer's card: {computercard}")
             print(f"You picked {playercard}, and I picked {computercard}")
 
             if playercard > computercard:
