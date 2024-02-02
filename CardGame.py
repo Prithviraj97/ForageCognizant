@@ -105,8 +105,8 @@ class Game:
         print(f"------------------------------------------------------------------")
         print("Welcome to the Basic Game!")
         print(f"You and this program will take turns picking cards.")
-        print(f"The one with highest value card wins")
-        print(f"-------------------------------------------------------------")
+        print(f"The one with the highest value card wins")
+        print(f"------------------------------------------------------------------")
         ready = input("Are you ready to start the Card Game? (y/n): ")
         if ready.lower() == 'y':
             self.play()
@@ -114,7 +114,8 @@ class Game:
             self.end()
 
     def end(self):
-        print("Game over", self._deck)
+        # print("Game over", self._deck)
+        print(self._deck)
 
     def play(self):
         
@@ -142,7 +143,7 @@ class Game:
         if self._deck.size() < 2:
                 print("Not enough cards to play.")
                 print("Sorry to see you go.")
-                print("--------------Remaining Cards--------------")
+                print("-------------------Remaining Cards-------------------")
                 self.end()   
          
             
