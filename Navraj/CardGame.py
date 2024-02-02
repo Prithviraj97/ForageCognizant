@@ -1,7 +1,8 @@
 #####################################################################
 # author:      
 # date:       
-# description:
+# description: The code defines classes for a Card, Deck, and Game, allowing users to play a basic card game
+# against the computer.
 #####################################################################
 
 # import the shuffle and seed functions from the random library.
