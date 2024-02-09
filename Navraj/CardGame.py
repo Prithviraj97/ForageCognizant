@@ -148,7 +148,13 @@ class Game:
         
         # print("Deck size after rounds:", self.deck.size())
             
-        
+class PictureCard(Card):
+    def __init__(self, rank, suit, imagefile):
+        super().__init__(rank, suit)
+        self.imagefile = imagefile
+
+    # Additional methods specific to PictureCard can be added here
+
 
 
         
