@@ -153,6 +153,24 @@ class PictureCard(Card):
         super().__init__(rank, suit)
         self.imagefile = imagefile
 
+    def displayImage(self):
+        # Load and display the image associated with this PictureCard
+        # You'll need to implement the image loading and display logic
+        # using a graphics library like Pygame or PIL.
+        pass
+
+    def specialEffect(self):
+        # Implement any special effects or actions related to this card
+        # For example, if this card has a unique ability in your game,
+        # handle it here.
+        pass
+
+# Example usage:
+picture_card = PictureCard(rank=11, suit="h", imagefile="queen_of_hearts.png")
+picture_card.displayImage()  # Display the card's image
+picture_card.specialEffect()  # Trigger any special effect associated with the card
+
+
     # Additional methods specific to PictureCard can be added here
 
 
