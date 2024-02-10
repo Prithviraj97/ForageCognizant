@@ -31,6 +31,9 @@ while running:
 
     # Draw everything
     screen.fill(WHITE)
+    pygame.draw.rect(screen, (0, 150, 0), play_button_rect)
+    pygame.draw.rect(screen, (150, 0, 0), quit_button_rect)
+
     # Add your drawing code here (sprites, backgrounds, etc.)
 
     pygame.display.flip()
