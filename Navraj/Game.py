@@ -14,6 +14,11 @@
 # screen = pygame.display.set_mode((WIDTH, HEIGHT))
 # pygame.display.set_caption("My Awesome Game")
 
+# Define button properties
+button_width, button_height = 100, 50
+play_button_rect = pygame.Rect(100, 200, button_width, button_height)
+quit_button_rect = pygame.Rect(100, 300, button_width, button_height)
+
 # # Game loop
 # clock = pygame.time.Clock()
 # running = True
