@@ -1,6 +1,6 @@
 import tkinter as tk
 from CardGame import Card, PictureCard, Deck
-
+import os
 class CardGameGUI:
     def __init__(self, deck):
         self.deck = deck
@@ -8,6 +8,7 @@ class CardGameGUI:
         self.canvas = tk.Canvas(self.root, width=500, height=500)
         self.canvas.pack()
         self.card_images = {}
+        self.card_instances = []
         self.load_card_images()
         self.play_game()
 
@@ -15,8 +16,11 @@ class CardGameGUI:
         for suit in Card.POSSIBLESUITS:
             for number in range(2, 11):
                 card = PictureCard(number, suit)
+                self.card_instances.append(card)
                 imagefile = card.get_imagefile()
-                self.card_images[(number, suit)] = tk.PhotoImage(file=imagefile)
+                dir = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images"
+                path = os.path.join(dir, imagefile)
+                self.card_images[(number, suit)] = tk.PhotoImage(file=path)
 
     def play_game(self):
         while self.deck.size() >= 2:
@@ -24,8 +28,8 @@ class CardGameGUI:
             computercard = self.deck.draw()
 
             self.canvas.delete("all")
-            self.display_card(playercard, 200, 200)
-            self.display_card(computercard, 300, 200)
+            self.display_card(playercard, 100, 100)
+            self.display_card(computercard, 100, 100)
 
             if playercard > computercard:
                 self.canvas.create_text(350, 450, text="I WIN")
@@ -47,6 +51,7 @@ class CardGameGUI:
     def display_card(self, card, x, y):
         number = card.number
         suit = card.suit
+        # imagefile = self.card_instances[number-2 and suit].get_imagefile()
         image = self.card_images[(number, suit)]
         self.canvas.create_image(x, y, image=image, anchor=tk.CENTER)
 
