@@ -6,7 +6,7 @@
 
 # import the shuffle and seed functions from the random library.
 import random
-
+import os
 # set the seed
 random.seed(9876543210)
 
@@ -164,7 +164,6 @@ class Game:
 #         # For example, if this card has a unique ability in your game,
 #         # handle it here.
 #         pass
-import os
 
 class PictureCard(Card):
     def __init__(self, number, suit):
@@ -175,12 +174,15 @@ class PictureCard(Card):
         return self.__imagefile
 
     def set_imagefile(self, imagefile):
-        if os.path.exists(imagefile):
-            self.__imagefile = imagefile
+
+        directory = "Navraj\CardGame\images" # Update this line to point to the directory where your card images are stored
+        full_path = os.path.join(directory, imagefile)
+        if os.path.exists(full_path):
+            self.__imagefile = full_path
         else:
             print("Invalid file name. Setting imagefile to default.png")
-            self.__imagefile = "Navraj\Card Game\images\default.png"
-
+            self.__imagefile = os.path.join(directory, "default.png")
+            
     def create_image_file_name(self, number, suit):
         return f"{number}_of_{suit}.png"
 
