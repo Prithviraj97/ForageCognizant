@@ -14,7 +14,7 @@ random.seed(9876543210)
 POSSIBLESUITS = ["clubs", "diamonds", "hearts", "spades"]
 
 class Card:
-    # POSSIBLESUITS = ["clubs", "diamonds", "hearts", "spades"]
+    POSSIBLESUITS = ["clubs", "diamonds", "hearts", "spades"]
 
     def __init__(self,number=2,suit='clubs'):
         self._number = number
@@ -58,7 +58,7 @@ class Card:
 
 class Deck:
     def __init__(self):
-        self._cards = [Card(number, suit) for number in range(2,11) for suit in POSSIBLESUITS]
+        self._cards = [PictureCard(number, suit) for number in range(2,11) for suit in Card.POSSIBLESUITS]
 
     @property
     def cards (self):
@@ -148,27 +148,46 @@ class Game:
         
         # print("Deck size after rounds:", self.deck.size())
             
+# class PictureCard(Card):
+#     def __init__(self, rank, suit, imagefile):
+#         super().__init__(rank, suit)
+#         self.imagefile = imagefile
+
+#     def displayImage(self):
+#         # Load and display the image associated with this PictureCard
+#         # You'll need to implement the image loading and display logic
+#         # using a graphics library like Pygame or PIL.
+#         pass
+
+#     def specialEffect(self):
+#         # Implement any special effects or actions related to this card
+#         # For example, if this card has a unique ability in your game,
+#         # handle it here.
+#         pass
+import os
+
 class PictureCard(Card):
-    def __init__(self, rank, suit, imagefile):
-        super().__init__(rank, suit)
-        self.imagefile = imagefile
+    def __init__(self, number, suit):
+        super().__init__(number, suit)
+        self.__imagefile = self.create_image_file_name(number, suit)
 
-    def displayImage(self):
-        # Load and display the image associated with this PictureCard
-        # You'll need to implement the image loading and display logic
-        # using a graphics library like Pygame or PIL.
-        pass
+    def get_imagefile(self):
+        return self.__imagefile
 
-    def specialEffect(self):
-        # Implement any special effects or actions related to this card
-        # For example, if this card has a unique ability in your game,
-        # handle it here.
-        pass
+    def set_imagefile(self, imagefile):
+        if os.path.exists(imagefile):
+            self.__imagefile = imagefile
+        else:
+            print("Invalid file name. Setting imagefile to default.png")
+            self.__imagefile = "Navraj\Card Game\images\default.png"
 
-# Example usage:
-picture_card = PictureCard(rank=11, suit="h", imagefile="queen_of_hearts.png")
-picture_card.displayImage()  # Display the card's image
-picture_card.specialEffect()  # Trigger any special effect associated with the card
+    def create_image_file_name(self, number, suit):
+        return f"{number}_of_{suit}.png"
+
+# # Example usage:
+# picture_card = PictureCard(rank=11, suit="h", imagefile="queen_of_hearts.png")
+# picture_card.displayImage()  # Display the card's image
+# picture_card.specialEffect()  # Trigger any special effect associated with the card
 
 
     # Additional methods specific to PictureCard can be added here

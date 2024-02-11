@@ -7,7 +7,7 @@ class CardGameGUI:
         self.layout = [
             [sg.Text("Welcome to the Card Game!")],
             [sg.Button("Start Game")],
-            [sg.Output(size=(50, 10))]
+            [sg.Output(size=(60, 20))]
         ]
 
     def run(self):
