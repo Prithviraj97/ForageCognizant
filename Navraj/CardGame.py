@@ -184,13 +184,6 @@ class PictureCard(Card):
     def create_image_file_name(self, number, suit):
         return f"{number}_of_{suit}.png"
 
-# # Example usage:
-# picture_card = PictureCard(rank=11, suit="h", imagefile="queen_of_hearts.png")
-# picture_card.displayImage()  # Display the card's image
-# picture_card.specialEffect()  # Trigger any special effect associated with the card
-
-
-    # Additional methods specific to PictureCard can be added here
 
 
 
