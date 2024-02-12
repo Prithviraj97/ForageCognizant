@@ -5,7 +5,7 @@ class CardGameGUI:
     def __init__(self, deck):
         self.deck = deck
         self.root = tk.Tk()
-        self.canvas = tk.Canvas(self.root, width=1000, height=1000)
+        self.canvas = tk.Canvas(self.root, width=800, height=800)
         self.canvas.pack()
         self.card_images = {}
         self.card_instances = []
