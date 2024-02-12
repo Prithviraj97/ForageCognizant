@@ -1,3 +1,5 @@
+'''This GUI should be able to show both drawn cards and print wining card.'''
+
 import PySimpleGUI as sg
 from CardGame import Game
 
