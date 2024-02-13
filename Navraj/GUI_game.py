@@ -32,9 +32,9 @@ class CardGameGUI:
             playercard = self.deck.draw()
             computercard = self.deck.draw()
 
-            self.canvas.delete("all")
+            # self.canvas.delete("all")
             self.display_card(playercard, 50, 50)
-            self.display_card(computercard, 50, 600)
+            self.display_card(computercard, 50, 50)
 
             if playercard > computercard:
                 self.canvas.create_text(350, 450, text="I WIN")
@@ -55,9 +55,11 @@ class CardGameGUI:
     def display_card(self, card, x, y):
         number = card.number
         suit = card.suit
-        # imagefile = self.card_instances[number-2 and suit].get_imagefile()
         image = self.card_images[(number, suit)]
-        self.canvas.create_image(x, y, image=image, anchor=tk.CENTER)
+        x_coord = x
+        if len(self.card_instances) > 1:
+            x_coord = x + image.width() + 50 # 50 is the space between the cards
+        self.canvas.create_image(x_coord, y, image=image, anchor=tk.CENTER)
 
 if __name__ == "__main__":
     deck = Deck()
