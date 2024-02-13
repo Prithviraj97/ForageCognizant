@@ -52,14 +52,19 @@ class CardGameGUI:
 
         play_round()
 
+    # def display_card(self, card, x, y):
+    #     number = card.number
+    #     suit = card.suit
+    #     image = self.card_images[(number, suit)]
+    #     x_coord = x
+    #     if len(self.card_instances) > 1:
+    #         x_coord = x + image.width() + 50 # 50 is the space between the cards
+    #     self.canvas.create_image(x_coord, y, image=image, anchor=tk.CENTER)
     def display_card(self, card, x, y):
         number = card.number
         suit = card.suit
         image = self.card_images[(number, suit)]
-        x_coord = x
-        if len(self.card_instances) > 1:
-            x_coord = x + image.width() + 50 # 50 is the space between the cards
-        self.canvas.create_image(x_coord, y, image=image, anchor=tk.CENTER)
+        self.canvas.create_image(x, y, image=image, anchor=tk.NW)
 
 if __name__ == "__main__":
     deck = Deck()
