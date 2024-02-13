@@ -34,7 +34,7 @@ class CardGameGUI:
 
             # self.canvas.delete("all")
             self.display_card(playercard, 50, 50)
-            self.display_card(computercard, 50, 50)
+            self.display_card(computercard, 50, 500)
 
             if playercard > computercard:
                 self.canvas.create_text(350, 450, text="I WIN")
