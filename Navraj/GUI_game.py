@@ -5,7 +5,7 @@ class CardGameGUI:
     def __init__(self, deck):
         self.deck = deck
         self.root = tk.Tk()
-        self.canvas = tk.Canvas(self.root, width=800, height=800)
+        self.canvas = tk.Canvas(self.root, width=500, height=500)
         self.canvas.pack()
         self.card_images = {}
         self.card_instances = []
@@ -32,7 +32,7 @@ class CardGameGUI:
             playercard = self.deck.draw()
             computercard = self.deck.draw()
 
-            # self.canvas.delete("all")
+            self.canvas.delete("all")
             self.display_card(playercard, 50, 50)
             self.display_card(computercard, 50, 500)
 
