@@ -23,11 +23,16 @@ class CardGameGUI:
                 self.card_images[(number, suit)] = tk.PhotoImage(file=path)
 
     def play_game(self):
-        while self.deck.size() >= 2:
+        if self.deck.size() < 2:
+            self.canvas.create_text(350, 450, text="Not enough cards to play.")
+            self.root.update()
+            return
+
+        def play_round():
             playercard = self.deck.draw()
             computercard = self.deck.draw()
 
-            # self.canvas.delete("all")
+            self.canvas.delete("all")
             self.display_card(playercard, 50, 50)
             self.display_card(computercard, 50, 600)
 
@@ -40,13 +45,12 @@ class CardGameGUI:
 
             self.root.update()
 
-            playagain = input("Would you like to play again? (y/n): ").lower()
-            if playagain != "y":
-                break
+            play_again = input("Would you like to play again? (y/n): ").lower()
+            if play_again != "y":
+                return
+            self.after(1000, play_round)
 
-        if self.deck.size() < 2:
-            self.canvas.create_text(350, 450, text="Not enough cards to play.")
-            self.root.update()
+        play_round()
 
     def display_card(self, card, x, y):
         number = card.number
@@ -59,3 +63,30 @@ if __name__ == "__main__":
     deck = Deck()
     game = CardGameGUI(deck)
     game.root.mainloop()
+
+
+# def play_game(self):
+#         while self.deck.size() >= 2:
+#             playercard = self.deck.draw()
+#             computercard = self.deck.draw()
+
+#             # self.canvas.delete("all")
+#             self.display_card(playercard, 50, 50)
+#             self.display_card(computercard, 50, 600)
+
+#             if playercard > computercard:
+#                 self.canvas.create_text(350, 450, text="I WIN")
+#             elif playercard < computercard:
+#                 self.canvas.create_text(350, 450, text="YOU WIN")
+#             else:
+#                 self.canvas.create_text(350, 450, text="It's a tie")
+
+#             self.root.update()
+
+#             playagain = input("Would you like to play again? (y/n): ").lower()
+#             if playagain != "y":
+#                 break
+
+#         if self.deck.size() < 2:
+#             self.canvas.create_text(350, 450, text="Not enough cards to play.")
+#             self.root.update()
