@@ -176,8 +176,7 @@ class PictureCard(Card):
         return self.__imagefile
 
     def set_imagefile(self, imagefile):
-
-        directory = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images" # Update this line to point to the directory where your card images are stored
+        directory = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images" 
         full_path = os.path.join(directory, imagefile)
         if os.path.exists(full_path):
             self.__imagefile = full_path

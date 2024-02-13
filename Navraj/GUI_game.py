@@ -1,11 +1,16 @@
 import tkinter as tk
 from CardGame import Card, PictureCard, Deck
 import os
+MAX_CARD_WIDTH = 150  # Maximum width for the card images (adjust as needed)
+CARD_HEIGHT_RATIO = 1.4  # Aspect ratio of the card images (height / width)
+PADDING = 10
 class CardGameGUI:
+    
+
     def __init__(self, deck):
         self.deck = deck
         self.root = tk.Tk()
-        self.canvas = tk.Canvas(self.root, width=500, height=500)
+        self.canvas = tk.Canvas(self.root, width=800, height=800)
         self.canvas.pack()
         self.card_images = {}
         self.card_instances = []
@@ -33,8 +38,18 @@ class CardGameGUI:
             computercard = self.deck.draw()
 
             self.canvas.delete("all")
-            self.display_card(playercard, 50, 50)
-            self.display_card(computercard, 50, 500)
+            # self.display_card(playercard, 50, 40)
+            # self.display_card(computercard, 300, 40)
+            # Calculate maximum width for the card images
+            max_width = min((self.canvas.winfo_width() - 2 * PADDING) / 2, MAX_CARD_WIDTH)
+
+            # Adjust card sizes if they exceed the maximum width
+            playercard_image = playercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), Image.ANTIALIAS)
+            computercard_image = computercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), Image.ANTIALIAS)
+
+            self.display_card(playercard_image, PADDING, PADDING)
+            self.display_card(computercard_image, max_width + 2 * PADDING, PADDING)
+
 
             if playercard > computercard:
                 self.canvas.create_text(350, 450, text="I WIN")
@@ -48,7 +63,7 @@ class CardGameGUI:
             play_again = input("Would you like to play again? (y/n): ").lower()
             if play_again != "y":
                 return
-            self.after(1000, play_round)
+            # self.after(1000, play_round)
 
         play_round()
 
