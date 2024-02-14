@@ -1,7 +1,7 @@
 import tkinter as tk
 from CardGame import Card, PictureCard, Deck
 import os
-MAX_CARD_WIDTH = 150  # Maximum width for the card images (adjust as needed)
+MAX_CARD_WIDTH = 50  # Maximum width for the card images (adjust as needed)
 CARD_HEIGHT_RATIO = 1.4  # Aspect ratio of the card images (height / width)
 PADDING = 10
 class CardGameGUI:
@@ -43,13 +43,14 @@ class CardGameGUI:
             # Calculate maximum width for the card images
             max_width = min((self.canvas.winfo_width() - 2 * PADDING) / 2, MAX_CARD_WIDTH)
 
-            # Adjust card sizes if they exceed the maximum width
-            playercard_image = playercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), Image.ANTIALIAS)
-            computercard_image = computercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), Image.ANTIALIAS)
+            # # Adjust card sizes if they exceed the maximum width
+            # playercard_image = playercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), playercard.image.ANTIALIAS)
+            # computercard_image = computercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), computercard.image.ANTIALIAS)
 
-            self.display_card(playercard_image, PADDING, PADDING)
-            self.display_card(computercard_image, max_width + 2 * PADDING, PADDING)
-
+            # self.display_card(playercard, PADDING, PADDING)
+            # self.display_card(computercard, max_width + 2 * PADDING, PADDING)
+            self.display_card(playercard, 50, 40)
+            self.display_card(computercard, 300+max_width, 40)
 
             if playercard > computercard:
                 self.canvas.create_text(350, 450, text="I WIN")
