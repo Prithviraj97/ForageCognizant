@@ -1,5 +1,6 @@
 import tkinter as tk
 from CardGame import Card, PictureCard, Deck
+from PIL import Image, ImageTk
 import os
 MAX_CARD_WIDTH = 50  # Maximum width for the card images (adjust as needed)
 CARD_HEIGHT_RATIO = 1.4  # Aspect ratio of the card images (height / width)
@@ -27,6 +28,47 @@ class CardGameGUI:
                 path = os.path.join(dir, imagefile)
                 self.card_images[(number, suit)] = tk.PhotoImage(file=path)
 
+    # def play_game(self):
+    #     if self.deck.size() < 2:
+    #         self.canvas.create_text(350, 450, text="Not enough cards to play.")
+    #         self.root.update()
+    #         return
+
+    #     def play_round():
+    #         playercard = self.deck.draw()
+    #         computercard = self.deck.draw()
+
+    #         self.canvas.delete("all")
+    #         # self.display_card(playercard, 50, 40)
+    #         # self.display_card(computercard, 300, 40)
+    #         # Calculate maximum width for the card images
+    #         max_width = min((self.canvas.winfo_width() - 2 * PADDING) / 2, MAX_CARD_WIDTH)
+
+    #         # # Adjust card sizes if they exceed the maximum width
+    #         # playercard_image = playercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), playercard.image.ANTIALIAS)
+    #         # computercard_image = computercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), computercard.image.ANTIALIAS)
+
+    #         # self.display_card(playercard, PADDING, PADDING)
+    #         # self.display_card(computercard, max_width + 2 * PADDING, PADDING)
+    #         self.display_card(playercard, 50, 40)
+    #         self.display_card(computercard, 300+max_width, 40)
+
+    #         if playercard > computercard:
+    #             self.canvas.create_text(350, 450, text="I WIN")
+    #         elif playercard < computercard:
+    #             self.canvas.create_text(350, 450, text="YOU WIN")
+    #         else:
+    #             self.canvas.create_text(350, 450, text="It's a tie")
+
+    #         self.root.update()
+
+    #         play_again = input("Would you like to play again? (y/n): ").lower()
+    #         if play_again != "y":
+    #             return
+    #         # self.after(1000, play_round)
+
+    #     play_round()
+                
     def play_game(self):
         if self.deck.size() < 2:
             self.canvas.create_text(350, 450, text="Not enough cards to play.")
@@ -38,19 +80,21 @@ class CardGameGUI:
             computercard = self.deck.draw()
 
             self.canvas.delete("all")
-            # self.display_card(playercard, 50, 40)
-            # self.display_card(computercard, 300, 40)
-            # Calculate maximum width for the card images
-            max_width = min((self.canvas.winfo_width() - 2 * PADDING) / 2, MAX_CARD_WIDTH)
 
-            # # Adjust card sizes if they exceed the maximum width
-            # playercard_image = playercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), playercard.image.ANTIALIAS)
-            # computercard_image = computercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), computercard.image.ANTIALIAS)
+            # Load card images and resize them
+            playercard_image = Image.open(playercard)
+            computercard_image = Image.open(computercard)
 
-            # self.display_card(playercard, PADDING, PADDING)
-            # self.display_card(computercard, max_width + 2 * PADDING, PADDING)
-            self.display_card(playercard, 50, 40)
-            self.display_card(computercard, 300+max_width, 40)
+            max_width = min((self.canvas.winfo_width() - 2 * self.PADDING) / 2, self.MAX_CARD_WIDTH)
+
+            playercard_image = playercard_image.resize((int(max_width), int(max_width * self.CARD_HEIGHT_RATIO)), Image.ANTIALIAS)
+            computercard_image = computercard_image.resize((int(max_width), int(max_width * self.CARD_HEIGHT_RATIO)), Image.ANTIALIAS)
+
+            playercard_photo = ImageTk.PhotoImage(playercard_image)
+            computercard_photo = ImageTk.PhotoImage(computercard_image)
+
+            self.display_card(playercard_photo, self.PADDING, self.PADDING)
+            self.display_card(computercard_photo, max_width + 2 * self.PADDING, self.PADDING)
 
             if playercard > computercard:
                 self.canvas.create_text(350, 450, text="I WIN")
@@ -64,7 +108,6 @@ class CardGameGUI:
             play_again = input("Would you like to play again? (y/n): ").lower()
             if play_again != "y":
                 return
-            # self.after(1000, play_round)
 
         play_round()
 
