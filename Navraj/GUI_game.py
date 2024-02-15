@@ -6,17 +6,26 @@ MAX_CARD_WIDTH = 50  # Maximum width for the card images (adjust as needed)
 CARD_HEIGHT_RATIO = 1.4  # Aspect ratio of the card images (height / width)
 PADDING = 10
 class CardGameGUI:
-    
 
-    def __init__(self, deck):
-        self.deck = deck
-        self.root = tk.Tk()
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Card Game")
+        self.deck = Deck()
+        # self.root = tk.Tk()
         self.canvas = tk.Canvas(self.root, width=800, height=800)
         self.canvas.pack()
         self.card_images = {}
         self.card_instances = []
         self.load_card_images()
         self.play_game()
+
+        # Create widgets
+        self.draw_button = tk.Button(root, text="Draw Card", command=self.load_card_images)
+        self.quit_button = tk.Button(root, text="Quit", command=self.root.quit)
+
+        # Pack widgets
+        self.draw_button.pack()
+        self.quit_button.pack()
 
     def load_card_images(self):
         for suit in Card.POSSIBLESUITS:
@@ -62,9 +71,8 @@ class CardGameGUI:
 
             self.root.update()
 
-            play_again = Game.play(self)
+            # play_again = Game.play(self)
             # self.after(1000, play_round)
-
         play_round()
                 
     # def display_card(self, card, x, y):
@@ -82,8 +90,9 @@ class CardGameGUI:
         self.canvas.create_image(x, y, image=image, anchor=tk.NW)
 
 if __name__ == "__main__":
-    deck = Deck()
-    game = CardGameGUI(deck)
+    # deck = Deck()
+    root = tk.Tk()
+    game = CardGameGUI(root)
     game.root.mainloop()
 
 

@@ -95,6 +95,6 @@ sys.exit()
 #     pygame.display.flip()
 #     clock.tick(FPS)
 
-# # Clean up and exit
-# pygame.quit()
-# sys.exit()
+# Clean up and exit
+pygame.quit()
+sys.exit()
