@@ -54,7 +54,27 @@ class Card:
     def __eq__(self,value):
         return self._number == value.number
 
+class PictureCard(Card):
+    def __init__(self, number, suit):
+        super().__init__(number, suit)
+        self._imagefile = self.create_image_file_name(number, suit)
+        # directory = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images"
+        # # full_path = os.path.join(directory, self.__imagefile)
+     
+    def get_imagefile(self):
+        return self._imagefile
 
+    def set_imagefile(self, imagefile):
+        directory = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images" 
+        full_path = os.path.join(directory, imagefile)
+        if os.path.exists(full_path):
+            self._imagefile = full_path
+        else:
+            print("Invalid file name. Setting imagefile to default.png")
+            self._imagefile = os.path.join(directory, "default.png")
+            
+    def create_image_file_name(self, number, suit):
+        return f"{number}_of_{suit}.png"
 
 class Deck:
     def __init__(self):
@@ -63,6 +83,7 @@ class Deck:
     @property
     def cards (self):
         return self._cards
+    
     @cards.setter
     def cards(self, newcards):
         self._cards = newcards
@@ -165,27 +186,6 @@ class Game:
 #         # handle it here.
 #         pass
 
-class PictureCard(Card):
-    def __init__(self, number, suit):
-        super().__init__(number, suit)
-        self.__imagefile = self.create_image_file_name(number, suit)
-        # directory = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images"
-        # # full_path = os.path.join(directory, self.__imagefile)
-     
-    def get_imagefile(self):
-        return self.__imagefile
-
-    def set_imagefile(self, imagefile):
-        directory = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images" 
-        full_path = os.path.join(directory, imagefile)
-        if os.path.exists(full_path):
-            self.__imagefile = full_path
-        else:
-            print("Invalid file name. Setting imagefile to default.png")
-            self.__imagefile = os.path.join(directory, "default.png")
-            
-    def create_image_file_name(self, number, suit):
-        return f"{number}_of_{suit}.png"
 
 
 
