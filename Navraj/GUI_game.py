@@ -1,5 +1,5 @@
 import tkinter as tk
-from CardGame import Card, PictureCard, Deck
+from CardGame import Card, PictureCard, Deck, Game
 from PIL import Image, ImageTk
 import os
 MAX_CARD_WIDTH = 50  # Maximum width for the card images (adjust as needed)
@@ -62,9 +62,7 @@ class CardGameGUI:
 
             self.root.update()
 
-            play_again = input("Would you like to play again? (y/n): ").lower()
-            if play_again != "y":
-                return
+            play_again = Game.play()
             # self.after(1000, play_round)
 
         play_round()
