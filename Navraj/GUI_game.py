@@ -62,7 +62,7 @@ class CardGameGUI:
 
             self.root.update()
 
-            play_again = Game.play()
+            play_again = Game.play(self)
             # self.after(1000, play_round)
 
         play_round()
