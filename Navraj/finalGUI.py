@@ -7,9 +7,11 @@ class CardGameGUI:
     def __init__(self, master):
         self.master = master
         self.master.title("Card Game")
-
+        self.card_instances = []
+        self.card_images = {}
         self.game = Game()
-
+        self.canvas = tk.Canvas(self.master, width=800, height=800)
+        self.canvas.pack()
         self.play_button = tk.Button(master, text="Play", command=self.play)
         self.play_button.pack()
 
@@ -37,11 +39,11 @@ class CardGameGUI:
         playercard = self.game.deck.draw()
         computercard = self.game.deck.draw()
 
-        player_image = self.load_card_image(playercard.get_imagefile)
+        player_image = self.load_card_image(playercard.imagefile)
         self.player_card_label.config(image=player_image)
         self.player_card_label.image = player_image
 
-        computer_image = self.load_card_image(computercard.get_imagefile)
+        computer_image = self.load_card_image(computercard.imagefile)
         self.computer_card_label.config(image=computer_image)
         self.computer_card_label.image = computer_image
 
@@ -55,12 +57,20 @@ class CardGameGUI:
         self.result_label.config(text=result)
 
     def load_card_image(self, imagefile):
-        try:
-            image = Image.open(imagefile)
-            image = image.resize((100, 150), Image.ANTIALIAS)
-            return ImageTk.PhotoImage(image)
-        except FileNotFoundError:
-            return None
+        for suit in Card.POSSIBLESUITS:
+            for number in range(2, 11):
+                card = PictureCard(number, suit)
+                self.card_instances.append(card)
+                imagefile = card._imagefile
+                dir = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images"
+                path = os.path.join(dir, imagefile)
+                self.card_images[(number, suit)] = tk.PhotoImage(file=path)
+                try:
+                    image = Image.open(path)
+                    image = image.resize((100, 150))
+                    return ImageTk.PhotoImage(image)
+                except FileNotFoundError:
+                    return None
 
     def restart(self):
         self.game = Game()
@@ -71,10 +81,8 @@ class CardGameGUI:
     def quit_game(self):
         self.master.destroy()
 
-def main():
-    root = tk.Tk()
-    app = CardGameGUI(root)
-    root.mainloop()
 
 if __name__ == "__main__":
-    main()
+    master = tk.Tk()
+    app = CardGameGUI(master)
+    app.master.mainloop()

@@ -60,11 +60,12 @@ class PictureCard(Card):
         self._imagefile = self.create_image_file_name(number, suit)
         # directory = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images"
         # # full_path = os.path.join(directory, self.__imagefile)
-     
-    def get_imagefile(self):
+    @property
+    def imagefile(self):
         return self._imagefile
 
-    def set_imagefile(self, imagefile):
+    @imagefile.setter
+    def imagefile(self, imagefile):
         directory = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images" 
         full_path = os.path.join(directory, imagefile)
         if os.path.exists(full_path):
