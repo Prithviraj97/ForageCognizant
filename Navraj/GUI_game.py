@@ -69,48 +69,6 @@ class CardGameGUI:
 
     #     play_round()
                 
-    def play_game(self):
-        if self.deck.size() < 2:
-            self.canvas.create_text(350, 450, text="Not enough cards to play.")
-            self.root.update()
-            return
-
-        def play_round():
-            playercard = self.deck.draw()
-            computercard = self.deck.draw()
-
-            self.canvas.delete("all")
-
-            # Load card images and resize them
-            playercard_image = Image.open(playercard)
-            computercard_image = Image.open(computercard)
-
-            max_width = min((self.canvas.winfo_width() - 2 * self.PADDING) / 2, self.MAX_CARD_WIDTH)
-
-            playercard_image = playercard_image.resize((int(max_width), int(max_width * self.CARD_HEIGHT_RATIO)), Image.ANTIALIAS)
-            computercard_image = computercard_image.resize((int(max_width), int(max_width * self.CARD_HEIGHT_RATIO)), Image.ANTIALIAS)
-
-            playercard_photo = ImageTk.PhotoImage(playercard_image)
-            computercard_photo = ImageTk.PhotoImage(computercard_image)
-
-            self.display_card(playercard_photo, self.PADDING, self.PADDING)
-            self.display_card(computercard_photo, max_width + 2 * self.PADDING, self.PADDING)
-
-            if playercard > computercard:
-                self.canvas.create_text(350, 450, text="I WIN")
-            elif playercard < computercard:
-                self.canvas.create_text(350, 450, text="YOU WIN")
-            else:
-                self.canvas.create_text(350, 450, text="It's a tie")
-
-            self.root.update()
-
-            play_again = input("Would you like to play again? (y/n): ").lower()
-            if play_again != "y":
-                return
-
-        play_round()
-
     # def display_card(self, card, x, y):
     #     number = card.number
     #     suit = card.suit
