@@ -28,46 +28,46 @@ class CardGameGUI:
                 path = os.path.join(dir, imagefile)
                 self.card_images[(number, suit)] = tk.PhotoImage(file=path)
 
-    # def play_game(self):
-    #     if self.deck.size() < 2:
-    #         self.canvas.create_text(350, 450, text="Not enough cards to play.")
-    #         self.root.update()
-    #         return
+    def play_game(self):
+        if self.deck.size() < 2:
+            self.canvas.create_text(350, 450, text="Not enough cards to play.")
+            self.root.update()
+            return
 
-    #     def play_round():
-    #         playercard = self.deck.draw()
-    #         computercard = self.deck.draw()
+        def play_round():
+            playercard = self.deck.draw()
+            computercard = self.deck.draw()
 
-    #         self.canvas.delete("all")
-    #         # self.display_card(playercard, 50, 40)
-    #         # self.display_card(computercard, 300, 40)
-    #         # Calculate maximum width for the card images
-    #         max_width = min((self.canvas.winfo_width() - 2 * PADDING) / 2, MAX_CARD_WIDTH)
+            self.canvas.delete("all")
+            # self.display_card(playercard, 50, 40)
+            # self.display_card(computercard, 300, 40)
+            # Calculate maximum width for the card images
+            max_width = min((self.canvas.winfo_width() - 2 * PADDING) / 2, MAX_CARD_WIDTH)
 
-    #         # # Adjust card sizes if they exceed the maximum width
-    #         # playercard_image = playercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), playercard.image.ANTIALIAS)
-    #         # computercard_image = computercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), computercard.image.ANTIALIAS)
+            # # Adjust card sizes if they exceed the maximum width
+            # playercard_image = playercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), playercard.image.ANTIALIAS)
+            # computercard_image = computercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), computercard.image.ANTIALIAS)
 
-    #         # self.display_card(playercard, PADDING, PADDING)
-    #         # self.display_card(computercard, max_width + 2 * PADDING, PADDING)
-    #         self.display_card(playercard, 50, 40)
-    #         self.display_card(computercard, 300+max_width, 40)
+            # self.display_card(playercard, PADDING, PADDING)
+            # self.display_card(computercard, max_width + 2 * PADDING, PADDING)
+            self.display_card(playercard, 50, 40)
+            self.display_card(computercard, 300+max_width, 40)
 
-    #         if playercard > computercard:
-    #             self.canvas.create_text(350, 450, text="I WIN")
-    #         elif playercard < computercard:
-    #             self.canvas.create_text(350, 450, text="YOU WIN")
-    #         else:
-    #             self.canvas.create_text(350, 450, text="It's a tie")
+            if playercard > computercard:
+                self.canvas.create_text(350, 450, text="I WIN")
+            elif playercard < computercard:
+                self.canvas.create_text(350, 450, text="YOU WIN")
+            else:
+                self.canvas.create_text(350, 450, text="It's a tie")
 
-    #         self.root.update()
+            self.root.update()
 
-    #         play_again = input("Would you like to play again? (y/n): ").lower()
-    #         if play_again != "y":
-    #             return
-    #         # self.after(1000, play_round)
+            play_again = input("Would you like to play again? (y/n): ").lower()
+            if play_again != "y":
+                return
+            # self.after(1000, play_round)
 
-    #     play_round()
+        play_round()
                 
     # def display_card(self, card, x, y):
     #     number = card.number
