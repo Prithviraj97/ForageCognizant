@@ -14,7 +14,7 @@ class CardGameGUI:
         self.root.title(" CSC/CYEN 131 Card Game")
         self.game = Game()
         self.deck = Deck()
-        self.canvas = tk.Canvas(self.root, width=1200, height=800)
+        self.canvas = tk.Canvas(self.root, width=1200, height=800, bg="lightgrey")
         self.canvas.pack()
         self.card_images = {}
         self.card_instances = []
@@ -25,28 +25,28 @@ class CardGameGUI:
         self.default_image = self.load_default_image()
 
         # Display default images for player and computer cards
-        self.default_card(self.default_image, 60, 40)  # Player card
-        self.default_card(self.default_image, 620, 40)
+        self.default_card(self.default_image, 60, 40)  #computer card
+        self.default_card(self.default_image, 620, 40)  #player card
 
 
-        self.play_button = tk.Button(root, text="Play", command=self.play_game)
+        self.play_button = tk.Button(root, text="Play", width=5, height=1, font=("Helvetica", 12),bg="lightblue",borderwidth=2, relief="raised",command=self.play_game)
         self.play_button.pack(side=tk.LEFT, padx=PADDING)
 
-        self.restart_button = tk.Button(root, text="Restart", justify="left", command=self.restart)
+        self.restart_button = tk.Button(root, text="Restart", justify="left",width=5, height=1, font=("Helvetica", 12),bg="lightblue",borderwidth=2, relief="raised", command=self.restart)
         self.restart_button.pack(side=tk.LEFT, padx=PADDING)
 
-        self.quit_button = tk.Button(root, text="Quit", justify="right", command=self.quit_game)
+        self.quit_button = tk.Button(root, text="Quit", justify="right",width=5, height=1, font=("Helvetica", 12),bg="lightblue",borderwidth=2, relief="raised", command=self.quit_game)
         self.quit_button.pack(side=tk.RIGHT, padx=PADDING)
 
         self.result_label = tk.Label(root, text="")
         self.result_label.pack()
 
         self.player_card_label = tk.Label(root, text="You Picked")
-        self.player_card_label.place(relx=1, rely=0, anchor=tk.NE)
+        self.player_card_label.place(relx=0.99, rely=0.01, anchor=tk.NE, bordermode="outside")
 
         self.computer_card_label = tk.Label(root, text="Computer Picked")
         # self.player_card_label.pack(side=tk.TOP)
-        self.computer_card_label.place(relx=0, rely=0, anchor=tk.NW)
+        self.computer_card_label.place(relx=0.01, rely=0.01, anchor=tk.NW, bordermode="outside")
 
         # # Load the default card image
         # image_path = "Navraj\CardGame\images\default.png"
@@ -91,11 +91,11 @@ class CardGameGUI:
 
             # I --> Computer and YOU ---> Player
             if playercard > computercard:
-                self.canvas.create_text(580, 790, text="YOU WIN")
+                self.canvas.create_text(580, 790, text="YOU WIN", font=("aerial", 14))
             elif playercard < computercard:
-                self.canvas.create_text(580, 790, text="I WIN")
+                self.canvas.create_text(580, 790, text="I WIN", font=("aerial", 14))
             else:
-                self.canvas.create_text(580, 790, text="It's a Draw")
+                self.canvas.create_text(580, 790, text="IT'S A DRAW", font=("aerial", 14))
 
             self.root.update()
 
@@ -128,6 +128,7 @@ class CardGameGUI:
         if self.default_image:
             self.canvas.create_image(60, 40, image=self.default_image, anchor=tk.NW)
             self.canvas.create_image(620, 40, image=self.default_image, anchor=tk.NW)
+            self.canvas.create_text(580, 730, text="Who wins?", font=("aerial", 14))
             
         self.play_button.config(command=self.play_game)
         # Update the display
