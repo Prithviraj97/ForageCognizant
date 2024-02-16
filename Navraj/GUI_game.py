@@ -21,8 +21,7 @@ class CardGameGUI:
         self.play_game()
         
 
-        # Create widgets
-        self.play_button = tk.Button(root, text="Play", justify="left",command=self.play_game)
+        self.play_button = tk.Button(root, text="Play", command=self.play_game)
         self.play_button.pack(side=tk.LEFT, padx=PADDING)
 
         self.restart_button = tk.Button(root, text="Restart", justify="left", command=self.restart)
@@ -94,15 +93,7 @@ class CardGameGUI:
         number = card.number
         suit = card.suit
         image = self.card_images[(number, suit)]
-        
-        # image_resize  = Img.resize(Img.width, Img.height // 8)
-        # photo = ImageTk.PhotoImage(image_resize)
         self.canvas.create_image(x, y, image=image, anchor=tk.NW)
-        # if cardtype:
-        #     label = self.player_card_label
-        # else:
-        #     label = self.computer_card_label
-        # label.config(text=f"{card.number} of {card.suit}")
         
         
     def restart(self, photo):
