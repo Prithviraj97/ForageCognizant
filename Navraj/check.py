@@ -2,7 +2,7 @@ import tkinter as tk
 from CardGame import Card, PictureCard, Deck, Game
 from PIL import Image, ImageTk
 import os
-MAX_CARD_WIDTH = 50  # Maximum width for the card images (adjust as needed)
+MAX_CARD_WIDTH = 50  
 CARD_HEIGHT_RATIO = 1.4  # Aspect ratio of the card images (height / width)
 MAX_WIDTH = 500  # Maximum width for the card image
 MAX_HEIGHT = 726
@@ -61,7 +61,7 @@ class CardGameGUI:
                 card = PictureCard(number, suit)
                 self.card_instances.append(card)
                 imagefile = card._imagefile
-                dir = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images"
+                dir = "Navraj\CardGame\images"                  #"C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images"
                 path = os.path.join(dir, imagefile)
                 self.card_images[(number, suit)] = tk.PhotoImage(file=path)
         
