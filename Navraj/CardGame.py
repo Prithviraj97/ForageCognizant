@@ -58,8 +58,7 @@ class PictureCard(Card):
     def __init__(self, number, suit):
         super().__init__(number, suit)
         self._imagefile = self.create_image_file_name(number, suit)
-        # directory = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images"
-        # # full_path = os.path.join(directory, self.__imagefile)
+        
     @property
     def imagefile(self):
         return self._imagefile

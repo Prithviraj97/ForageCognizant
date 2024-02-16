@@ -13,32 +13,33 @@ class CardGameGUI:
         self.game = Game()
         self.deck = Deck()
         # self.root = tk.Tk()
-        self.canvas = tk.Canvas(self.root, width=800, height=800)
+        self.canvas = tk.Canvas(self.root, width=1200, height=800)
         self.canvas.pack()
         self.card_images = {}
         self.card_instances = []
         self.load_card_images()
         self.play_game()
+        
 
         # Create widgets
-        self.play_button = tk.Button(root, text="Play", command=self.play_game)
-        self.play_button.pack()
+        self.play_button = tk.Button(root, text="Play", justify="left",command=self.play_game)
+        self.play_button.pack(side=tk.LEFT, padx=PADDING)
 
-        self.restart_button = tk.Button(root, text="Restart", command=self.restart)
-        self.restart_button.pack()
+        self.restart_button = tk.Button(root, text="Restart", justify="left", command=self.restart)
+        self.restart_button.pack(side=tk.LEFT)
 
-        self.quit_button = tk.Button(root, text="Quit", command=self.quit_game)
-        self.quit_button.pack()
+        self.quit_button = tk.Button(root, text="Quit", justify="right", command=self.quit_game)
+        self.quit_button.pack(side=tk.RIGHT)
 
         self.result_label = tk.Label(root, text="")
         self.result_label.pack()
 
-        self.player_card_label = tk.Label(root)
-        self.player_card_label.pack()
+        self.player_card_label = tk.Label(root, text="You Picked")
+        self.player_card_label.place(relx=1, rely=0, anchor=tk.NE)
 
-        self.computer_card_label = tk.Label(root)
-        self.computer_card_label.pack()
-
+        self.computer_card_label = tk.Label(root, text="Computer Picked")
+        # self.player_card_label.pack(side=tk.TOP)
+        self.computer_card_label.place(relx=0, rely=0, anchor=tk.NW)
 
     def load_card_images(self):
         for suit in Card.POSSIBLESUITS:
@@ -65,7 +66,7 @@ class CardGameGUI:
             # self.display_card(playercard, 50, 40)
             # self.display_card(computercard, 300, 40)
             # Calculate maximum width for the card images
-            max_width = min((self.canvas.winfo_width() - 2 * PADDING) / 2, MAX_CARD_WIDTH)
+            # max_width = min((self.canvas.winfo_width() - 2 * PADDING) / 2, MAX_CARD_WIDTH)
 
             # # Adjust card sizes if they exceed the maximum width
             # playercard_image = playercard.image.resize((max_width, int(max_width * CARD_HEIGHT_RATIO)), playercard.image.ANTIALIAS)
@@ -73,15 +74,15 @@ class CardGameGUI:
 
             # self.display_card(playercard, PADDING, PADDING)
             # self.display_card(computercard, max_width + 2 * PADDING, PADDING)
-            self.display_card(playercard, 50, 40)
-            self.display_card(computercard, 300+max_width, 40)
+            self.display_card(computercard, 60, 40)
+            self.display_card(playercard, 620, 40)
 
             if playercard > computercard:
-                self.canvas.create_text(350, 450, text="I WIN")
+                self.canvas.create_text(580, 790, text="YOU WIN")
             elif playercard < computercard:
-                self.canvas.create_text(350, 450, text="YOU WIN")
+                self.canvas.create_text(580, 790, text="I WIN")
             else:
-                self.canvas.create_text(350, 450, text="It's a tie")
+                self.canvas.create_text(580, 790, text="It's a Draw")
 
             self.root.update()
 
@@ -89,23 +90,31 @@ class CardGameGUI:
             # self.after(1000, play_round)
         play_round()
                 
-    # def display_card(self, card, x, y):
-    #     number = card.number
-    #     suit = card.suit
-    #     image = self.card_images[(number, suit)]
-    #     x_coord = x
-    #     if len(self.card_instances) > 1:
-    #         x_coord = x + image.width() + 50 # 50 is the space between the cards
-    #     self.canvas.create_image(x_coord, y, image=image, anchor=tk.CENTER)
     def display_card(self, card, x, y):
         number = card.number
         suit = card.suit
         image = self.card_images[(number, suit)]
+        
+        # image_resize  = Img.resize(Img.width, Img.height // 8)
+        # photo = ImageTk.PhotoImage(image_resize)
         self.canvas.create_image(x, y, image=image, anchor=tk.NW)
-
-    def restart(self):
+        # if cardtype:
+        #     label = self.player_card_label
+        # else:
+        #     label = self.computer_card_label
+        # label.config(text=f"{card.number} of {card.suit}")
+        
+        
+    def restart(self, photo):
         self.game = Game()
         self.result_label.config(text="")
+        # photo = "C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images\\default.png"
+        self.player_card_label.config(image=photo)
+        # self.player_card_image = photo
+        # # self.player_card_label.config(image="C:\\Users\\TheEarthG\\Downloads\\ForageCognizant\\Navraj\\CardGame\\images\\default.png")
+        # self.computer_card_label.config(image=photo)
+        # self.computer_card_image=photo
+           
 
     def quit_game(self):
         self.root.destroy()
@@ -117,29 +126,3 @@ if __name__ == "__main__":
     game = CardGameGUI(root)
     game.root.mainloop()
 
-
-# def play_game(self):
-#         while self.deck.size() >= 2:
-#             playercard = self.deck.draw()
-#             computercard = self.deck.draw()
-
-#             # self.canvas.delete("all")
-#             self.display_card(playercard, 50, 50)
-#             self.display_card(computercard, 50, 600)
-
-#             if playercard > computercard:
-#                 self.canvas.create_text(350, 450, text="I WIN")
-#             elif playercard < computercard:
-#                 self.canvas.create_text(350, 450, text="YOU WIN")
-#             else:
-#                 self.canvas.create_text(350, 450, text="It's a tie")
-
-#             self.root.update()
-
-#             playagain = input("Would you like to play again? (y/n): ").lower()
-#             if playagain != "y":
-#                 break
-
-#         if self.deck.size() < 2:
-#             self.canvas.create_text(350, 450, text="Not enough cards to play.")
-#             self.root.update()
