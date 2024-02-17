@@ -48,12 +48,6 @@ class CardGameGUI:
         # self.player_card_label.pack(side=tk.TOP)
         self.computer_card_label.place(relx=0.01, rely=0.01, anchor=tk.NW, bordermode="outside")
 
-        # # Load the default card image
-        # image_path = "Navraj\CardGame\images\default.png"
-        # self.default_image = Image.open(image_path)
-        # self.default_image = self.default_image.resize((min(self.default_image.width, MAX_WIDTH), min(self.default_image.height, MAX_HEIGHT)))
-        # self.default_tk_image = ImageTk.PhotoImage(self.default_image)
-        # Load the default card image
         
     def load_card_images(self):
         for suit in Card.POSSIBLESUITS:
