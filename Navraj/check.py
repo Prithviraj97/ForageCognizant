@@ -30,19 +30,19 @@ class CardGameGUI:
 
 
         self.play_button = tk.Button(root, text="Play", width=5, height=1, font=("Helvetica", 12),bg="lightblue",borderwidth=2, relief="raised",command=self.play_game)
-        self.play_button.pack(side=tk.LEFT, padx=PADDING)
+        self.play_button.pack(side=tk.LEFT, padx=PADDING, pady=PADDING)
 
         self.restart_button = tk.Button(root, text="Restart", justify="left",width=5, height=1, font=("Helvetica", 12),bg="lightblue",borderwidth=2, relief="raised", command=self.restart)
-        self.restart_button.pack(side=tk.LEFT, padx=PADDING)
+        self.restart_button.pack(side=tk.LEFT, padx=PADDING, pady=PADDING)
 
         self.quit_button = tk.Button(root, text="Quit", justify="right",width=5, height=1, font=("Helvetica", 12),bg="lightblue",borderwidth=2, relief="raised", command=self.quit_game)
-        self.quit_button.pack(side=tk.RIGHT, padx=PADDING)
+        self.quit_button.pack(side=tk.RIGHT, padx=PADDING, pady=PADDING)
 
         self.result_label = tk.Label(root, text="")
-        self.result_label.pack()
+        self.result_label.pack(pady=PADDING)
 
         self.player_card_label = tk.Label(root, text="You Picked")
-        self.player_card_label.place(relx=0.99, rely=0.01, anchor=tk.NE, bordermode="outside")
+        self.player_card_label.place(relx=0.98, rely=0.02, anchor=tk.NE, bordermode="outside")
 
         self.computer_card_label = tk.Label(root, text="Computer Picked")
         # self.player_card_label.pack(side=tk.TOP)
