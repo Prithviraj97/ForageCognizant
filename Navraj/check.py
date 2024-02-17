@@ -15,7 +15,7 @@ class CardGameGUI:
         self.game = Game()
         self.deck = Deck()
         self.canvas = tk.Canvas(self.root, width=1200, height=800, bg="lightgrey")
-        self.canvas.pack()
+        self.canvas.pack(expand=True, fill=tk.BOTH)
         self.card_images = {}
         self.card_instances = []
         self.load_card_images()
