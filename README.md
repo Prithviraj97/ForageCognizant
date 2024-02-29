@@ -1,0 +1,1 @@
+This repo contains code about several different python programming concepts including basic python, objected oriented programming, statistics, probability, complex python codes as well as GUI programming with python.
