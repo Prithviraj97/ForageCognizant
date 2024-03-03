@@ -1,0 +1,1 @@
+This repo contains code about several different Python programming concepts including basic python, object-oriented programming, statistics, probability, complex Python codes as well as GUI programming with Python. Each Folder contains the code specific to the title of the folder.
