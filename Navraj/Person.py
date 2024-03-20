@@ -20,7 +20,7 @@ MAX_Y = 600
 class Person:
 
 
-    def __init__(self, name="player 1", x=0, y=0, size=1.0):
+    def __init__(self, name="player 1", x=0, y=0, size=1):
         self.name = name
         self.x = x
         self.y = y
@@ -72,6 +72,8 @@ class Person:
     def size(self, value):
         if value >= 1:
             self._size = value
+        else:
+            self._size = 1
 
     def goLeft(self, value=1):
         self.x -= value
